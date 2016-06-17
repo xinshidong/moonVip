@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.dao.content.IContentMapper">
+
+  <select id="findContent" parameterType="TzParams"  resultType="Content">
+				SELECT
+					id,
+					title,
+					content,
+					create_time  as createTime,
+					update_time  as updateTime,
+					user_id as userId,
+					tag,
+					is_top as isTop,
+					is_delete  as isDelete,
+					status,
+					channel_id as channelId,
+					img,
+					push,
+					is_comment as isComment,
+					hits,
+					loves,
+					collections,
+					static_link as staticLink,
+					keywords,
+					description,
+					sub_title  as subTitle,
+					type,
+					category_id as categoryId,
+					thumnail
+					from content
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(channelId)">
+					         channel_id=#{channelId}
+					     </if>
+					   
+					</trim>
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+					      title  LIKE '%${keyword}%'
+					     </if>
+					      
+					</trim>
+					ORDER BY 
+					    ${order}
+				    LIMIT #{pageNo},#{pageSize};
+
+  
+  </select>
+  <select id="countContent" parameterType="TzParams"  resultType="int">
+				SELECT
+					 count(1)
+					from content
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(channelId)">
+					         channel_id=#{channelId}
+					     </if>
+					   
+					</trim>
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+					      title  LIKE '%${keyword}%'
+					     </if>
+					      
+					</trim>
+  </select>
+</mapper>
