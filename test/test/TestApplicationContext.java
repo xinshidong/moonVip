@@ -47,6 +47,8 @@ public class TestApplicationContext {
 		parames.setAccount("222");
 		User users = service.getLogin(parames);
 		System.out.println(users.getUsername()+"======="+users.getPassword());*/
+		
+		System.out.println( "test" );
 	}
 	
 	
