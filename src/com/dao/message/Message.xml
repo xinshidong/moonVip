@@ -5,20 +5,29 @@
   <select id="findMessage" parameterType="TzParams"  resultType="Message">
 			select	id,
 					name,
-					create_time  as createTime,
-					update_time  as updateTime,
 					user_id as userId,
-					sort,
+					create_time  as createTime,
 					is_delete  as isDelete,
+					update_time  as updateTime,
 					status
 					from message
 					<trim  prefix="WHERE" prefixOverrides="AND | OR">
 					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
-					      title  LIKE '%${keyword}%'
+					      name  LIKE '%${keyword}%'
 					     </if>				      
 					</trim>
 					ORDER BY 
 					    ${order}
 				    LIMIT #{pageNo},#{pageSize};  
+  </select>
+   <select id="count" parameterType="TzParams"  resultType="int">
+				SELECT
+					 count(1)
+					from content
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+					      name  LIKE '%${keyword}%'
+					     </if>
+					</trim>
   </select>
 </mapper>

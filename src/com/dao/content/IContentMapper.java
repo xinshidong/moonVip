@@ -17,7 +17,7 @@ public interface IContentMapper {
 	@Autowired
 	public List<Content> findContent(TzParams params);
 	//求总数
-    public int 	countContent(TzParams params);
+    public int 	count(TzParams params);
 	
 	public Content getContent(Integer id);
 	/**保存内容
@@ -31,12 +31,12 @@ public interface IContentMapper {
 	 * @param params
 	 * @return
 	 */
-	public int  Update(Content content);
+	public int  update(Content content);
 	/**删除  内容
 	 * 
 	 * @param params
 	 * @return
 	 */
-	public int  Delete(TzParams params);
+	public int  delete(TzParams params);
 	
 }

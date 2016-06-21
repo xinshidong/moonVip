@@ -10,18 +10,24 @@ import com.service.message.IMessageService;
 import java.util.*;
 
 @Controller
-@RequestMapping("/admin/Message")
+@RequestMapping("/admin/message")
 public class MessageController {
 	
 	 @Autowired 
 	 private IMessageService messageService;
 	 @RequestMapping("/list")
+	public String  List(TzParams  params){
+			return "message/list";
+		}
+	@RequestMapping("/template")
 	public ModelAndView  List(){
 		ModelAndView  modelAndView=new ModelAndView();
-		modelAndView.setViewName("message/list");
-		TzParams  params=new TzParams();
+		modelAndView.setViewName("message/template");
+	/*	TzParams  params=new TzParams();
+		int count=messageService.count(params);
 		List<Message> messages=messageService.findMessages(params);
 		modelAndView.addObject("datas",messages );
+		modelAndView.addObject("itemCount",count);*/
 		return modelAndView;
 	}
 	

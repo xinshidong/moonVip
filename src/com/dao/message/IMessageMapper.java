@@ -21,6 +21,9 @@ public interface IMessageMapper{
 	 * @param params
 	 * @return
 	 */
+	//求总数
+    public int 	count(TzParams params);
+	
 	public int Save(Message message);
 	/**更新信息管理
 	 * 作者 ksmile

@@ -7,14 +7,46 @@ public class TzParams {
 	 private String email;
 	 private String password; 
 	 private  Integer channelId;
+	 public  Integer isDelete;
 	 private String  keyword;
 	 private String order;
 	 private Integer  pageNo=0;
 	 private Integer  pageSize=10;
 	 private Integer  totalCount=0;
-	 
-	 
-	 
+	 private Integer year;
+	 private Integer month;
+	 private Integer  day;
+	 private Integer  hour;
+	public Integer getYear() {
+		return year;
+	}
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+	public Integer getMonth() {
+		return month;
+	}
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+	public Integer getDay() {
+		return day;
+	}
+	public void setDay(Integer day) {
+		this.day = day;
+	}
+	public Integer getHour() {
+		return hour;
+	}
+	public void setHour(Integer hour) {
+		this.hour = hour;
+	}
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 	public String getOrder() {  
 		
 		return order;
@@ -22,6 +54,7 @@ public class TzParams {
 	public void setOrder(String order) {
 		this.order = order;
 	}
+	
 	public Integer getPageNo() {
 		return pageNo;
 	}

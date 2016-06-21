@@ -16,9 +16,7 @@ public class Message implements java.io.Serializable{
 	private Integer id;/* 主键 */
 	private String name; //名称
 	private Date createTime;// 创建时间
-	private Date updateTime;// 创建时间
 	private Integer userId;// 用户ID
-	private Integer sort;// 排序
 	private Integer isDelete;// 0删除1未删除
 	private Integer status;// 0未发布1发布
 	
@@ -43,23 +41,11 @@ public class Message implements java.io.Serializable{
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 	public Integer getUserId() {
 		return userId;
 	}
 	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-	public Integer getSort() {
-		return sort;
-	}
-	public void setSort(Integer sort) {
-		this.sort = sort;
 	}
 	public Integer getIsDelete() {
 		return isDelete;

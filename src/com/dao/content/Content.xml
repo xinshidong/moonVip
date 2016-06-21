@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper  namespace="com.dao.content.IContentMapper">
-
   <select id="findContent" parameterType="TzParams"  resultType="Content">
 				SELECT
 					id,
@@ -32,37 +31,47 @@
 					from content
 					<trim  prefix="WHERE" prefixOverrides="AND | OR">
 					     <if test="@com.util.TmStringUtils@isNotEmpty(channelId)">
-					         channel_id=#{channelId}
-					     </if>
-					   
-					</trim>
-					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					       and  channel_id=#{channelId}
+					     </if>	   
 					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
-					      title  LIKE '%${keyword}%'
+					       and title  LIKE '%${keyword}%'
 					     </if>
-					      
+					     <if test="@com.util.TmStringUtils@isNotEmpty(isDelete  )">
+					       and is_delete  LIKE '%${isDelete}%'
+					     </if>
 					</trim>
 					ORDER BY 
 					    ${order}
 				    LIMIT #{pageNo},#{pageSize};
-
-  
   </select>
-  <select id="countContent" parameterType="TzParams"  resultType="int">
+  <select id="count" parameterType="TzParams"  resultType="int">
 				SELECT
-					 count(1)
+					count(1)
 					from content
 					<trim  prefix="WHERE" prefixOverrides="AND | OR">
 					     <if test="@com.util.TmStringUtils@isNotEmpty(channelId)">
-					         channel_id=#{channelId}
+					       and channel_id=#{channelId}
 					     </if>
-					   
-					</trim>
-					<trim  prefix="WHERE" prefixOverrides="AND | OR">
 					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
-					      title  LIKE '%${keyword}%'
+					      and title  LIKE '%${keyword}%'
 					     </if>
-					      
+					     <if test="@com.util.TmStringUtils@isNotEmpty(isDelete  )">
+					      and is_delete  LIKE '%${isDelete}%'
+					     </if>
 					</trim>
   </select>
+  <update id="update" parameterType="Content">
+     update content
+     <set>
+        <if test="status!=null">status=#{status},</if>
+        <if test="isDelete!=null">is_delete=#{isDelete},</if>
+        <if test="isComment!=null">is_comment=#{isComment},</if>
+        <if test="isTop!=null">is_top=#{isTop},</if>
+        <if test="push!=null">push=#{push},</if>
+     </set>
+       where id=#{id}
+  </update>
+  <delete id="delete" parameterType="TzParams">
+      update  content  set is_delete=2 where id=#{id}
+  </delete>
 </mapper>

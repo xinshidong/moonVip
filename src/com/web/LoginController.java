@@ -26,7 +26,6 @@ public class LoginController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="/logined",method=RequestMethod.POST)
 	public  String logined(TzParams params){
-		
 		if(params!=null){
 			 if(TmStringUtils.isNotEmpty(params.getEmail())&&TmStringUtils.isNotEmpty(params.getPassword())){
 					 params.setPassword(TmStringUtils.md5Base64(params.getPassword()));
@@ -38,6 +37,9 @@ public class LoginController extends BaseController{
 							 }else{
 								  session.setAttribute("session_user",user);
 						    	  session.setAttribute("session_user_username", user.getUsername());
+						    	  //日记监控用户行为和获取请求参数
+								   request.getServletContext().setAttribute("user_log", user);
+								   request.getServletContext().setAttribute("request_log", request);
 						    	  return "success";
 							 }
 				      }else{
