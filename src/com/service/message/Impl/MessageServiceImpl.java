@@ -42,5 +42,9 @@ public class MessageServiceImpl implements IMessageService {
 	public int delete(TzParams params) {
 		return MessageMapper.Delete(params);
 	}
-
+	public int count(TzParams params) {
+		
+		return MessageMapper.count(params);
+	}
+	
 }

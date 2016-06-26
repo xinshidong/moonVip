@@ -16,7 +16,6 @@ import com.util.TmStringUtils;
 public class ContentService implements IContentService {
 	@Autowired
 	private IContentMapper contentMapper;
-	
 	@Override
 	public List<Content> findContents(TzParams params){
 		if(TmStringUtils.isEmpty(params.getOrder()))params.setOrder("create_time desc");
@@ -35,18 +34,18 @@ public class ContentService implements IContentService {
 
 	@Override
 	public int update(Content content) {
-		return contentMapper.Update(content);
+		return contentMapper.update(content);
 	}
 
 	@Override
 	public int delete(TzParams params) {
-		return contentMapper.Delete(params);
+		return contentMapper.delete(params);
 	}
 
 	@Override
 	public int countContent(TzParams params) {
 		
-		return contentMapper.countContent(params);
+		return contentMapper.count(params);
 	}
 
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.dao.adminstat.IAdminStatMapper">
+  <select id="findAdminStat" parameterType="TzParams"  resultType="AdminStat">
+			select	id,
+					classname,
+					method,
+					time,
+				   	create_time	as creaeTime,
+					ip,
+					ipaddress as ipAddress,
+					user_id as userId,
+					username,
+					model,
+					description
+					from admin_stat
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+					      method  LIKE '%${keyword}%'
+					     </if>				      
+					</trim>
+					ORDER BY 
+					    ${order}
+				    LIMIT #{pageNo},#{pageSize};  
+   </select>
+   <select id="count" parameterType="TzParams"  resultType="int">
+				SELECT
+					 count(1)
+					from admin_stat
+					<trim  prefix="WHERE" prefixOverrides="AND | OR">
+					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+					      method  LIKE '%${keyword}%'
+					     </if>
+					</trim>
+   </select>
+   <insert id="Save"  parameterType="AdminStat">
+          	INSERT  INTO admin_stat(
+						classname,
+						method,
+						time,
+						ip,
+						ipaddress,
+						user_id,
+						username,
+						model,
+						description
+	        )VALUES(
+					#{classname},
+					#{method},
+					#{time},
+					#{ip},
+					#{ipaddress},
+					#{userId},
+					#{username},
+					#{model},
+					#{description}
+	           )  
+    </insert>
+    <!-- 查询内容统计分组 -->
+    <select id="groupContent"  parameterType="TzParams"   resultType="java.util.Map">
+	   SELECT
+			id,
+			title,
+			create_time
+		FROM
+			content
+		WHERE
+			DATE_FORMAT(create_time, '%m%') =#{month}
+		ORDER BY  ${order}
+	    limit #{pageNo},#{pageSize}
+    </select>	
+</mapper>
