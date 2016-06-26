@@ -382,9 +382,8 @@
 	</div>
 
  <script type="text/javascript">
-    $(function(){
-    	//jsä»£ç åå¨è¿é
-    	
+    $(function(){
+    	alert("hehe~~");
     })
  
  </script>

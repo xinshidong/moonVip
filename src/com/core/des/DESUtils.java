@@ -72,7 +72,7 @@ public class DESUtils {
 //		}
 		
 		try {
-			System.out.println(getEncryptString("root"));
+			System.out.println(getEncryptString("admin"));
 			System.out.println(getEncryptString("sorry"));
 		} catch (Exception e) {
 			// TODO: handle exception
