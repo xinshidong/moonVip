@@ -25,8 +25,8 @@
 				    LIMIT #{pageNo},#{pageSize};  
    </select>
    <select id="count" parameterType="TzParams"  resultType="int">
-				SELECT
-					 count(1)
+			 	   SELECT
+					  count(1)
 					from admin_stat
 					<trim  prefix="WHERE" prefixOverrides="AND | OR">
 					     <if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
@@ -70,4 +70,15 @@
 		ORDER BY  ${order}
 	    limit #{pageNo},#{pageSize}
     </select>	
+    <select id="groupUsers" parameterType="TzParams" resultType="java.util.HashMap">
+		   SELECT
+				count(1) as num,
+				DATE_FORMAT(create_time, '%H') AS h
+			FROM
+				user
+			WHERE
+				DATE_FORMAT(create_time, '%Y-%m-%d') =#{date}	
+			GROUP BY  h
+			ORDER BY  h
+    </select>
 </mapper>

@@ -110,12 +110,12 @@
 			<div class="control-group">
 				<div class="controls">
 					<div class="main_input_box">
-						<span class="add-on bg_ly"><i class="fa fa-lock"></i></span><input style="color:black" type="password" id="password" autocomplete="off" placeholder="请输入密码...">
+						<span class="add-on bg_ly"><i class="fa fa-lock"></i></span><input style="color:black" maxlength="20" type="password" id="password" autocomplete="off" placeholder="请输入密码...">
 					</div>
 				</div>
 			</div>
 			<div class="form-actions">
-				<span><a  href="javascript:void(0);" onclick="tz_login(this)" class="btn btn-success">登录</a></span>
+				<span><a href="javascript:void(0);" onclick="tz_login(this)" class="btn btn-success">登录</a></span>
 			</div>
 		</form>
 	</div>
@@ -132,17 +132,26 @@
 	 		var email= tzMap.get("wxw_email",1);
 	 		if(email){$("#email").val(email)}
 	  	}); 
-	    
-		 
 	  	function tz_login(obj){
 	  		var email = $("#email").val();
 	  		var password = $("#password").val();
-	  		var params = {email:email,password:password};		
-	  		$.ajax({
-	  			type:"post",
+	  		if(isEmpty(email)){
+	  			loading("请输入账号...",3); 
+	  			$("#email").focus();
+	  			return;
+	  		}
+	  		if(isEmpty(password)){
+	  			loading("请输入密码...",3); 
+	  			$("#password").focus();
+	  			return;
+	  		}
+	  		var params = {email:email,password:password};
+	  		$(obj).removeAttr("onclick").text("登录中...");
+	  		tzAjax.request({
 	  			url:basePath+"/logined",
-	  			data:params,
+	  			error:function(){$(obj).attr("onclick","tz_login(this)").text("登录");},
 	  			success:function(data){
+	  			  $(obj).attr("onclick","tz_login(this)").text("登录");
 	  			  if(data=="error" || data=="null"){
 	  					loading("请填写账号或者密码...",3); 
 	  					$("#password").val("");
@@ -156,10 +165,12 @@
 	  					 loading("你已被禁止登录",3);
 	  				}else{
 	  					//登录成功
-	  					window.location.href = adminPath+"/index";
+	  					var  refer=document.referrer;
+	  					window.location.href =isNotEmpty(refer) ? refer: adminPath+"/index";
 	  				} 
 	  			}
-	  		});
+	  			
+	  		},params);
 	  	};  	
 	  </script>
   </body>

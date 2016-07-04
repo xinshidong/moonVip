@@ -1,27 +1,6 @@
-/**
- * Project Name:tzupload
- * File Name:User.java
- * Package Name:bean
- * Date:2015骞�11鏈�6鏃ヤ笅鍗�9:04:29
- * Copyright (c) 2015, chenzhou1025@126.com All Rights Reserved.
- *
- */
-
 package com.bean;
 
 import java.util.Date;
-
-/**
- * ClassName:User <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason: TODO ADD REASON. <br/>
- * Date: 2015骞�11鏈�6鏃� 涓嬪崍9:04:29 <br/>
- * 
- * @author Administrator
- * @version
- * @since JDK 1.6
- * @see
- */
 public class AdminUser {
 	
 	//主键
@@ -51,7 +30,7 @@ public class AdminUser {
 	//1允许登录0 不允许登录
 	private Integer forbiden;
 	//0代表未删除 1代表删除
-	private Boolean isDelete;
+	private Integer isDelete;
 	public AdminUser(){
 		super();
 	}
@@ -133,12 +112,10 @@ public class AdminUser {
 	public void setForbiden(Integer forbiden) {
 		this.forbiden = forbiden;
 	}
-	public Boolean getIsDelete() {
+	public Integer getIsDelete() {
 		return isDelete;
 	}
-	public void setIsDelete(Boolean isDelete) {
+	public void setIsDelete(Integer isDelete) {
 		this.isDelete = isDelete;
 	}
-
-	
 }

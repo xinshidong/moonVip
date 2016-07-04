@@ -39,4 +39,7 @@ public interface IContentMapper {
 	 */
 	public int  delete(TzParams params);
 	
+    public  Content  get(Integer id);
+	
+	
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.role.IRoleMapper" >
+	<select id="findRoles" resultType="Role" parameterType="TzParams">
+		select 
+		id,
+		name,
+		create_time as createTime,
+		update_time as updateTime,
+		user_id as userId,
+		is_delete as isDelete,
+		description
+		FROM
+			role 
+		<trim prefix="WHERE" prefixOverrides="AND | OR">  
+			<if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+				and name LIKE '%${keyword}%'
+			</if>
+		</trim>
+		ORDER BY ${order}
+		LIMIT #{pageNo} ,#{pageSize};				
+	</select>
+	
+	<select id="count" resultType="int" parameterType="TzParams">
+		SELECT
+			count(1) 
+		FROM
+			role 
+		<trim prefix="WHERE" prefixOverrides="AND | OR">  
+			<if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+				and name LIKE '%${keyword}%'
+			</if>
+		</trim>
+	</select>
+	
+	<select id="findFilterUsers" resultType="java.util.HashMap" parameterType="TzParams">
+		SELECT id,username,email FROM admin_user WHERE id NOT IN(
+		SELECT user_id FROM  role_user WHERE role_id =#{roleId})
+		<if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+			and username LIKE '%${keyword}%'
+		</if>
+		<if test="@com.util.TmStringUtils@isNotEmpty(isDelete)">
+			and is_delete = #{isDelete} 
+		</if>
+		LIMIT #{pageNo} ,#{pageSize};				
+	</select>
+	
+	<select id="countFilterUsers" resultType="int"  parameterType="TzParams">
+		SELECT count(1) FROM  admin_user WHERE id NOT IN(
+		SELECT user_id FROM  role_user WHERE role_id =#{roleId})
+		<if test="@com.util.TmStringUtils@isNotEmpty(keyword)">
+			and username LIKE '%${keyword}%'
+		</if>
+		<if test="@com.util.TmStringUtils@isNotEmpty(isDelete)">
+			and is_delete = #{isDelete} 
+		</if>
+	</select>
+	
+	
+	<insert id="saveRoleUser">
+		INSERT INTO role_user(user_id,role_id) VALUES(#{userId},#{roleId})
+	</insert>
+	
+	<insert id="saveRolePermission">
+		INSERT INTO role_permission(role_id,permission_id) VALUES(#{roleId},#{permissionId})
+	</insert>
+	
+	<delete id="deleteRolePermission">
+		delete from   where role_id = #{roleId}
+	</delete>
+	
+	<select id="findRolesByUserId" resultType="java.util.HashMap">
+		SELECT GROUP_CONCAT(`name`) as name,CONVERT(GROUP_CONCAT(id),CHARACTER) as rids FROM role_user  ru
+		LEFT JOIN  role r ON r.id = ru.role_id
+		WHERE ru.user_id =#{userId}
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.dao.user.IUserMapper">
+  <select id="getLogin" parameterType="TzParams"  resultType="AdminUser">
+				    SELECT
+					id,
+					username,
+					email,
+					forbiden
+				FROM
+					admin_user
+				WHERE
+					email =#{email}
+				AND password=#{password}
+  </select>
+  <insert id="saveBatch" useGeneratedKeys="true" parameterType="java.util.List">
+     INSERT INTO admin_user (username,password) VALUES
+     <foreach collection="list" index="index" item="user" separator=",">
+         (#{user.username},#{user.password})
+     </foreach>
+  </insert>
+  <update id="btachUpdate" parameterType="java.util.List">
+      <foreach collection="list" index="index" item="item" separator=";">
+        update admin_user
+         <set>
+           is_delete=0
+         </set>
+        where id=#{item.id}
+     </foreach>
+  </update>
+</mapper>

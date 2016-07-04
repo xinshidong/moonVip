@@ -11,11 +11,9 @@ import org.apache.commons.io.FileUtils;
 import com.util.TmFileUtil;
 import com.util.TmStringUtils;
 
-import ch.qos.logback.core.util.FileUtil;
-
 public class AutoProject {
 	//制动创建类
-    private static String beanName="Message";
+    private static String beanName="AdminStat";
     private static String smallBeanName=beanName.toLowerCase();
 	//目录结构
 	private static String  srcPath="src/";
@@ -34,6 +32,7 @@ public class AutoProject {
 	private static String  serviceImplTemplate="template/serviceImpl.txt";
 	private static String   webTemplate="template/web.txt";
 	private static String   pageTemplate="template/list.txt";
+	private static String   templateTemplate="template/template.txt";
 	//包名
 	private static String  beanPackage="com.bean";
 	private static String  daoPackage="com.dao";
@@ -41,12 +40,53 @@ public class AutoProject {
 	private static String  serviceImplPackage="com.service"+smallBeanName+".impl";
 	private static String  webPackage="com.web";
 	//注释
-	private static String   description="信息管理";
-	private static String   author="ksmile";
-	private static String   telephone="13261814680";
-	private static String   qq="1012474315";
+	private static String   description="日志管理";
+	private static String   author="smile";
+	private static String   telephone="13261814688";
+	private static String   qq="1012474318";
 	private static String   email="1012474315@qq.com";
 	private static String   date=new  SimpleDateFormat("yyyy年MM月dd日  HH:mm:ss").format(new Date());
+	
+	
+	
+	//创建template
+		public static void  createTemplate() throws IOException{
+			boolean flag=false;
+			//获取bean 根目录
+		    String path=getRoot(pagePath);
+		    //自动创建根目录
+			File  rootFile=new File(path);
+			//判断根目录文件是否存在
+			if(!rootFile.exists()) rootFile.mkdirs();
+			//写入目标文件
+			File  beanfile=new File(rootFile,"template.jsp");
+			//获取模板页面路径
+			String templete=getRoot(webTemplate);
+			//读取模板内容
+			String content=TmFileUtil.readFileByLines(templete);
+			//替换模板内容
+			content=replaceTemplate(content);
+			//判断文件是否存在 并提示覆盖操作
+			if(beanfile.exists()){
+				System.out.println("[自动构建提示:]你当前创建的:["+templete+"创建已经存在,是否覆盖yes/no]");
+				 //控制台输入对象
+			    Scanner  scanner=new Scanner(System.in);
+				 //获取控制台输入的值
+				String  mark=scanner.nextLine();
+				if(mark.equalsIgnoreCase("yes")){
+					//替换写入目标文件
+					FileUtils.writeStringToFile(beanfile.getAbsoluteFile(),content,"UTF-8");
+				}
+			}else{
+					
+				   System.out.println("[自动构建提示:]你当前创建的:【"+beanfile.getAbsolutePath()+"】写入到【"+pagePath+"】成功！！！");
+				    //替换写入目标文件
+					FileUtils.writeStringToFile(beanfile.getAbsoluteFile(),content,"UTF-8");	
+			  }
+		}
+		
+		
+
 	
 	//创建web
 	public static void  createWeb() throws IOException{
@@ -60,7 +100,7 @@ public class AutoProject {
 		//写入目标文件
 		File  beanfile=new File(rootFile,beanName +"Controller.java");
 		//获取模板页面路径
-		String templete=getRoot(webTemplate);
+		String templete=getRoot(templateTemplate);
 		//读取模板内容
 		String content=TmFileUtil.readFileByLines(templete);
 		//替换模板内容
@@ -299,12 +339,12 @@ public class AutoProject {
 	
 	
 	public static void main(String[] args) throws IOException {
-		 //createBean();
-		 //createDao();
-		 //createSqlXml();
-		 // createService();
-		 //createServiceImpl();
-		   createWeb();
+		 createBean();
+		 createDao();
+		 createSqlXml();
+		 createService();
+		 createServiceImpl();
+		 createWeb();
 		
 		
 	}

@@ -236,8 +236,9 @@ public class TzFunctions {
 		}
 		return TmIpUtil.ipLocation(ip);
 	}
-	
-	
+	public static int  indexof(String content,String search){
+		  return content.indexOf(search);
+	}
 	public static void main(String[] args) {
 		//char A 65
 		//B 66

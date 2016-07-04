@@ -44,6 +44,34 @@
 					    ${order}
 				    LIMIT #{pageNo},#{pageSize};
   </select>
+  <select id="get"  resultType="Content">
+				SELECT
+				    id,
+					title,
+					content,
+					create_time  as createTime,
+					update_time  as updateTime,
+					user_id as userId,
+					tag,
+					is_top as isTop,
+					is_delete  as isDelete,
+					status,
+					channel_id as channelId,
+					img,
+					push,
+					is_comment as isComment,
+					hits,
+					loves,
+					collections,
+					static_link as staticLink,
+					keywords,
+					description,
+					sub_title  as subTitle,
+					type,
+					category_id as categoryId,
+					thumnail
+					from content where id=#{id}
+  </select>
   <select id="count" parameterType="TzParams"  resultType="int">
 				SELECT
 					count(1)

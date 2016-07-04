@@ -17,6 +17,20 @@ public class TzParams {
 	 private Integer month;
 	 private Integer  day;
 	 private Integer  hour;
+	 private String  date;
+	 private Integer roleId;//角色id
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		  this.date=date;
+	}
 	public Integer getYear() {
 		return year;
 	}
@@ -54,7 +68,6 @@ public class TzParams {
 	public void setOrder(String order) {
 		this.order = order;
 	}
-	
 	public Integer getPageNo() {
 		return pageNo;
 	}

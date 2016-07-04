@@ -146,4 +146,11 @@
  	<function-signature>java.lang.String ipLocation(java.lang.String)</function-signature>
  	<example>${tz:ipLocation(127.0.0.1)}===本地</example>
  </function>
+ <function>
+ 	<description>indexof</description>
+ 	<name>indexof</name>
+ 	<function-class>com.tag.TzFunctions</function-class>
+ 	<function-signature>int  indexof(java.lang.String ,java.lang.String ))</function-signature>
+ 	<example>${tz:indexof('aaaa','a')}==0</example>
+ </function>
 </taglib>

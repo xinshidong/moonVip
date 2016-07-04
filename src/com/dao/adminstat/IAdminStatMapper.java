@@ -3,9 +3,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bean.AdminStat;
 import com.bean.TzParams;
-
 public interface IAdminStatMapper{
   
 	/**查找日志管理
@@ -37,7 +37,7 @@ public interface IAdminStatMapper{
 	 * @param params
 	 * @return
 	 */
-	public int  Delete(TzParams params);
+	public int Delete(TzParams params);
 	/**查询 日志管理
 	 * 作者 smile
 	 * 时间 2016年06月11日  18:22:14
@@ -53,6 +53,13 @@ public interface IAdminStatMapper{
 		 * @return
 		 */
 	 public List<HashMap<String,Object>> groupContent(TzParams params);
+		/**统计每一天每一时刻的用户注册量
+		 * 作者 smile
+		 * 时间 2016年06月11日  18:22:14
+		 * @param params
+		 * @return
+		 */
+	 public List<HashMap<String,Object>> groupUsers(TzParams params);
 	
 	
 }

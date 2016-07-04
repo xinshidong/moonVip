@@ -2,12 +2,10 @@ package com.service.content;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bean.Content;
 import com.bean.TzParams;
-import com.dao.content.IContentMapper;
 
 @Service
 public interface IContentService {
@@ -15,7 +13,7 @@ public interface IContentService {
 	List<Content> findContents(TzParams params);
 	
 	//求总数
-    public int 	countContent(TzParams params);
+    public int 	count(TzParams params);
 
 	Content getContent(Integer id);
 

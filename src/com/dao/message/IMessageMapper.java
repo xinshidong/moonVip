@@ -1,10 +1,8 @@
 package com.dao.message;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bean.Message;
 import com.bean.TzParams;
-
 public interface IMessageMapper{
   
 	/**查找信息管理

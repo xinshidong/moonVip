@@ -105,55 +105,9 @@
  </head>
  <body>
 	<div class="wrap">
-		<div class="slider">
-			<div class="logo">
-				<a href="#"><img src="${basePath}/resources/images/logo.png"/></a>
-			</div>
-			<div class="nav">
-				<ul>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-home"></i>首页</a></li>
-					 <li class="items active"><a href="javascript:void(0);"><i class="fa fa-signal"></i>统计报表</a></li>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-inbox"></i>区块</a></li>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-th"></i>表格</a></li>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-send"></i>其他</a></li>
-					 <li class="items">
-						<a href="javascript:void(0);"><i class="fa fa-th-list"></i>表单</a>
-						<ul>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-inbox"></i>区块</a></li>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-th"></i>表格</a></li>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-send"></i>其他</a></li>
-						</ul>
-						<span class="numicon c5">3</span>
-					 </li>
-					 <li class="items">
-						<a href="javascript:void(0);"><i class="fa fa-tint"></i>按钮组</a>
-						<ul>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-inbox"></i>区块</a></li>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-th"></i>表格</a></li>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-send"></i>其他</a></li>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-th"></i>表格</a></li>
-							 <li class="citems"><a href="javascript:void(0);"><i class="fa fa-send"></i>其他</a></li>
-						</ul>
-						<span class="numicon c1">5</span>
-					 </li>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-pencil"></i>元素</a></li>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-star"></i>Addons 5</a></li>
-					 <li class="items"><a href="javascript:void(0);"><i class="fa fa-file-o"></i>Error</a></li>
-				</ul>
-			</div>
-		</div>
+	    <%@include file="/WEB-INF/pages/common/left.jsp"%>
 		<div class="content">
-			<div class="header">
-				<ul class="fl">
-					 <li class="titems"><a href="javascript:void(0);"><i class="fa fa-user"></i>欢迎Smile来到cms后台</a></li>
-					 <li class="titems"><a href="javascript:void(0);"><i class="fa fa-envelope"></i>消息5个!</a></li>
-					 <li class="titems"><a href="javascript:void(0);"><i class="fa fa-cog"></i>设置</a></li>
-					 <li class="titems"><a href="${basePath}/logout"><i class="fa fa-share-alt"></i>退出</a></li>	
-				</ul>
-				<div class="fr sbtn none">
-					<input type="text" class="fl" placeholder="搜索的关键字..."/><a href="#" class="fl"><i class="fa fa-search "></i></a>
-				</div>
-			</div>
+		    <%@include file="/WEB-INF/pages/common/header.jsp"%>
 			<div class="channel"> Home > Table</div>
 			<div class="cnt">
 				<div class="tabwrap">
@@ -161,7 +115,7 @@
 					<!--表格-->
 					<table class="tztab">
 						<caption>
-							2015年度一周统计报表数据
+							2016年度一周统计报表数据
 							<div class="fr sbtn">
 								<input type="text" class="fl" placeholder="搜索的关键字..."/><a href="#" class="fl"><i class="fa fa-search "></i></a>
 							</div>
@@ -188,7 +142,6 @@
 						<!--身体部-->
 						<tbody>
 							<tr>
-								
 								<td>JS/CSS3</td>	
 								<td>柯柯</td>	
 								<td>2015-09-06 15:15:00</td>	
@@ -382,8 +335,9 @@
 	</div>
 
  <script type="text/javascript">
-    $(function(){
-    	alert("hehe~~");
+    $(function(){
+    	//jsä»£ç åå¨è¿é
+    	
     })
  
  </script>

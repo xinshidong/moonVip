@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.dao.stat.IStatMapper">
+    <select id="groupContents" resultType="java.util.Map" parameterType="TzParams">
+			    SELECT
+					DATE_FORMAT(create_time, '%m')  as m,
+			   	    count(1) as  num
+				FROM
+					content
+				WHERE
+					DATE_FORMAT(create_time, '%Y') = #{year}
+				GROUP BY m
+				ORDER BY m 
+    </select>
+</mapper>
